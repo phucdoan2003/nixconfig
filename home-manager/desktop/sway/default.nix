@@ -1,0 +1,154 @@
+{pkgs, ...}: {
+  imports = [
+    ./waybar.nix
+    ./mako.nix
+    ./xdg.nix
+  ];
+
+  home.packages = with pkgs; [
+    # screenshot
+    grim
+    slurp
+    # clipboard
+    wl-clipboard
+    # authentication
+    polkit_gnome
+    # gtk lib
+    glib
+    # vnc
+    wayvnc
+    # misc
+    wmenu
+    brightnessctl
+    blueman
+    spotify
+  ];
+
+  programs = {
+    imv.enable = true;
+    swaylock = {
+      enable = true;
+    };
+  };
+
+  services = {
+    cliphist.enable = true;
+    gnome-keyring = {
+      enable = true;
+      components = ["secrets"];
+    };
+  };
+
+  wayland.windowManager.sway = {
+    enable = true;
+    systemd.xdgAutostart = true;
+
+    config = rec {
+      modifier = "Mod4";
+      terminal = "kitty";
+      defaultWorkspace = "workspace number 1";
+      startup = [
+        {command = "exec ${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store";}
+        {command = "exec ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";}
+        {command = "exec swaymsg output DP-1 pos 0 0";}
+        {command = "exec swaymsg output eDP-1 pos 960 2160";}
+      ];
+      menu = "exec ${pkgs.wmenu}/bin/wmenu-run -b -N 00000000 -f \"JetBrains Mono Normal 16\"";
+
+      bars = [{command = "${pkgs.waybar}/bin/waybar";}];
+
+      window = {
+        titlebar = false;
+      };
+
+      input = {
+        "1133:45111:MX_Anywhere_3S_Mouse" = {
+          accel_profile = "flat";
+          pointer_accel = "0";
+        };
+        "1133:50503:Logitech_USB_Receiver" = {
+          accel_profile = "flat";
+          pointer_accel = "-0.5";
+        };
+        "1118:2415:Microsoft_Surface_Type_Cover_Mouse" = {
+          natural_scroll = "disabled";
+        };
+      };
+
+      gaps = {
+        smartBorders = "on";
+        smartGaps = true;
+      };
+
+      keybindings = {
+        "${modifier}+home" = "output 'DP-1' toggle; output 'eDP-1' toggle";
+        "${modifier}+q" = "exec ${terminal}";
+        "${modifier}+r" = "exec ${menu}";
+        "Ctrl+Shift+Space" = "exec 1password --quick-access";
+
+        # screenshot
+        "Alt+Shift+F" = "exec ${pkgs.grim}/bin/grim - | ${pkgs.wl-clipboard}/bin/wl-copy";
+        "Alt+f" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -w 0)\" - | ${pkgs.wl-clipboard}/bin/wl-copy";
+        "Alt+s" = "exec ${pkgs.grim}/bin/grim ~/Pictures/Screenshots/$(date +'%s_grim.png')";
+        "Alt+Shift+S" = "exec ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp -w 0)\" ~/Pictures/Screenshots/$(date +'%s_grim.png')";
+
+        "XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +1%";
+        "XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 1%-";
+
+        "XF86AudioRaiseVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+";
+        "XF86AudioLowerVolume" = "exec ${pkgs.wireplumber}/bin/wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-";
+        "XF86AudioMute" = "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        "XF86AudioMicMute" = "exec ${pkgs.wireplumber}/bin/wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+
+        "XF86AudioPlay" = "exec ${pkgs.playerctl}/bin/playerctl play-pause";
+        "XF86AudioPause" = "exec ${pkgs.playerctl}/bin/playerctl pause";
+        "XF86AudioNext" = "exec ${pkgs.playerctl}/bin/playerctl next";
+        "XF86AudioPrev" = "exec ${pkgs.playerctl}/bin/playerctl previous";
+
+        "${modifier}+t" = "reload";
+        "${modifier}+c" = "kill";
+        "${modifier}+f" = "fullscreen toggle";
+        "${modifier}+s" = "floating toggle";
+        "${modifier}+Shift+e" = "exec swaymsg exit";
+
+        "${modifier}+h" = "focus left";
+        "${modifier}+l" = "focus right";
+        "${modifier}+k" = "focus up";
+        "${modifier}+j" = "focus down";
+
+        "${modifier}+Shift+h" = "move left";
+        "${modifier}+Shift+l" = "move right";
+        "${modifier}+Shift+k" = "move up";
+        "${modifier}+Shift+j" = "move down";
+
+        # workspace
+        "${modifier}+n" = "workspace prev_on_output";
+        "${modifier}+p" = "workspace next_on_output";
+        "Alt+Left" = "workspace prev_on_output";
+        "Alt+Right" = "workspace next_on_output";
+
+        "${modifier}+1" = "workspace number 1";
+        "${modifier}+2" = "workspace number 2";
+        "${modifier}+3" = "workspace number 3";
+        "${modifier}+4" = "workspace number 4";
+        "${modifier}+5" = "workspace number 5";
+        "${modifier}+6" = "workspace number 6";
+        "${modifier}+7" = "workspace number 7";
+        "${modifier}+8" = "workspace number 8";
+        "${modifier}+9" = "workspace number 9";
+        "${modifier}+0" = "workspace number 10";
+
+        "${modifier}+Shift+1" = "move container to workspace number 1";
+        "${modifier}+Shift+2" = "move container to workspace number 2";
+        "${modifier}+Shift+3" = "move container to workspace number 3";
+        "${modifier}+Shift+4" = "move container to workspace number 4";
+        "${modifier}+Shift+5" = "move container to workspace number 5";
+        "${modifier}+Shift+6" = "move container to workspace number 6";
+        "${modifier}+Shift+7" = "move container to workspace number 7";
+        "${modifier}+Shift+8" = "move container to workspace number 8";
+        "${modifier}+Shift+9" = "move container to workspace number 9";
+        "${modifier}+Shift+0" = "move container to workspace number 10";
+      };
+    };
+  };
+}
