@@ -9,10 +9,6 @@
         layer = "top";
         position = "top";
         height = 20;
-        output = [
-          "DP-1"
-          "eDP-1"
-        ];
         spacing = 16;
 
         modules-left = ["mpris"];

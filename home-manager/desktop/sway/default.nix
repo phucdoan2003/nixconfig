@@ -45,13 +45,11 @@
 
     config = rec {
       modifier = "Mod4";
-      terminal = "kitty";
+      terminal = "wezterm";
       defaultWorkspace = "workspace number 1";
       startup = [
         {command = "exec ${pkgs.wl-clipboard}/bin/wl-paste --watch ${pkgs.cliphist}/bin/cliphist store";}
         {command = "exec ${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";}
-        {command = "exec swaymsg output DP-1 pos 0 0";}
-        {command = "exec swaymsg output eDP-1 pos 960 2160";}
       ];
       menu = "exec ${pkgs.wmenu}/bin/wmenu-run -b -N 00000000 -f \"JetBrains Mono Normal 16\"";
 
@@ -61,27 +59,12 @@
         titlebar = false;
       };
 
-      input = {
-        "1133:45111:MX_Anywhere_3S_Mouse" = {
-          accel_profile = "flat";
-          pointer_accel = "0";
-        };
-        "1133:50503:Logitech_USB_Receiver" = {
-          accel_profile = "flat";
-          pointer_accel = "-0.5";
-        };
-        "1118:2415:Microsoft_Surface_Type_Cover_Mouse" = {
-          natural_scroll = "disabled";
-        };
-      };
-
       gaps = {
         smartBorders = "on";
         smartGaps = true;
       };
 
       keybindings = {
-        "${modifier}+home" = "output 'DP-1' toggle; output 'eDP-1' toggle";
         "${modifier}+q" = "exec ${terminal}";
         "${modifier}+r" = "exec ${menu}";
         "Ctrl+Shift+Space" = "exec 1password --quick-access";

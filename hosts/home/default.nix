@@ -1,12 +1,13 @@
 {
+  config,
   pkgs,
   inputs,
   outputs,
   ...
 }: {
   imports = [
-    inputs.nixos-hardware.nixosModules.common-cpu-intel
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+    inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     inputs.home-manager.nixosModules.default
     inputs.stylix.nixosModules.stylix
@@ -20,6 +21,7 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     # Use the systemd-boot EFI boot loader.
+    plymouth.enable = true;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
@@ -27,7 +29,7 @@
   };
 
   networking = {
-    hostName = "fou";
+    hostName = "home";
     networkmanager = {
       enable = true;
     };
@@ -67,9 +69,11 @@
       enable = true;
       powerOnBoot = true;
     };
-    nvidia.prime = {
-      intelBusId = "0@0:2:0";
-      nvidiaBusId = "1@:0:0:0";
+    nvidia = {
+      modesetting.enable = true;
+      open = true;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
     };
   };
 

@@ -51,6 +51,10 @@
         modules = [./hosts/fou];
         specialArgs = {inherit inputs outputs;};
       };
+      home = nixpkgs.lib.nixosSystem {
+        modules = [./hosts/home];
+        specialArgs = {inherit inputs outputs;};
+      };
     };
   };
 }
