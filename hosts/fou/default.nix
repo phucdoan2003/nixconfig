@@ -10,11 +10,13 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     inputs.home-manager.nixosModules.default
     inputs.stylix.nixosModules.stylix
+    inputs.nix-minecraft.nixosModules.minecraft-servers
     inputs.sops-nix.nixosModules.sops
 
     ./hardware-configuration.nix
     ../../modules/virtualisation
     ../../modules/services/syncthing.nix
+    ../../modules/services/minecraft.nix
   ];
 
   boot = {
@@ -135,12 +137,26 @@
       google-chrome
       broadcom-bt-firmware
       bluez
+
+      #devops
+      git
+      docker
+      awscli2
+      kubectl
+      terraform
+      ansible
+      trivy
+      kubernetes-helm
+      minikube
+      kubernetes
     ];
     variables = {
       # track https://github.com/swaywm/sway/issues/8143
       GTK_IM_MODULE = "fcitx";
     };
   };
+
+  nixpkgs.overlays = [inputs.nix-minecraft.overlay];
   # This option defines the first version of NixOS you have installed on this particular machine,
   # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
   #

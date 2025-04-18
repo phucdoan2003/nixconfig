@@ -38,12 +38,25 @@
       html.enable = true;
       lua_ls.enable = true;
       nixd.enable = true;
-      pylyzer.enable = true;
+      pyright.enable = true;
       ruff.enable = true;
       tailwindcss.enable = true;
       jsonls.enable = true;
       volar.enable = true;
       svelte.enable = true;
+      dockerls.enable = true;
+      terraformls.enable = true;
+      ansiblels.enable = true;
+      yamlls = {
+        enable = true;
+        settings = {
+          yaml = {
+            schema = {
+              "https://json.schemastore.org/github-workflow.json" = "/.github/workflows/*";
+            };
+          };
+        };
+      };
     };
   };
 }

@@ -40,7 +40,7 @@
       treesitter-refactor.enable = true;
       ts-autotag.enable = true;
 
-      lualine.enable = true;
+      # lualine.enable = true;
 
       direnv.enable = true;
     };

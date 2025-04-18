@@ -8,5 +8,6 @@
     wget
     wl-clipboard
     go
+    ollama
   ];
 }

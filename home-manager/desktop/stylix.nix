@@ -39,6 +39,7 @@
       nixvim.enable = false;
       btop.enable = false;
       waybar.enable = false;
+      wezterm.enable = false;
       bemenu = {
         fontSize = 12;
       };

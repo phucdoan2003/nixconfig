@@ -20,13 +20,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = {
     self,
     nixpkgs,
-    nix-darwin,
-    home-manager,
     sops-nix,
     systems,
     ...

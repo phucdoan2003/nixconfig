@@ -17,11 +17,17 @@
       -- This is where you actually apply your config choices
 
       config.font = wezterm.font("JetBrainsMono Nerd Font")
-      config.font_size = 16
-      config.color_scheme = "catppuccin-macchiato"
+      config.font_size = 12
+      config.color_scheme = catppuccin
+      config.adjust_window_size_when_changing_font_size = false
 
-      config.window_background_opacity = 0.9
+      config.colors = {
+      background = 'black',
+      }
+
+      config.window_background_opacity = 0.75
       config.front_end = "WebGpu"
+      config.use_fancy_tab_bar = false
 
       config.default_prog = { '${pkgs.fish}/bin/fish', '--login' }
 

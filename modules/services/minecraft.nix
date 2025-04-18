@@ -5,7 +5,7 @@
     openFirewall = true;
 
     servers = {
-      earth1 = {
+      skibidi = {
         enable = true;
         autoStart = true;
         package = pkgs.fabricServers.fabric;
@@ -14,7 +14,8 @@
           white-list = true;
         };
         whitelist = {
-          "treetw" = "118f1463-2fff-41d8-9c79-ebc21878ae7f";
+          "syyr3nnn" = "e9274e0b-80ca-4ef9-9aaf-045e01d208d0";
+          "Catouberos" = "4d15938d-1245-4086-a8d1-e43b6ea4720d";
         };
       };
     };
