@@ -11,6 +11,7 @@
     ./cmp.nix
     ./grugfar.nix
     ./flash.nix
+    ./lualine.nix
   ];
 
   programs.nixvim = {
@@ -40,7 +41,7 @@
       treesitter-refactor.enable = true;
       ts-autotag.enable = true;
 
-      # lualine.enable = true;
+      lualine.enable = true;
 
       direnv.enable = true;
     };

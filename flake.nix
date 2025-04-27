@@ -15,11 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     systems.url = "github:nix-systems/default-linux";
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     sops-nix.url = "github:Mic92/sops-nix";
   };
@@ -38,7 +33,6 @@
       system:
         import nixpkgs {
           inherit system;
-          config.allowUnfree = true;
         }
     );
   in {

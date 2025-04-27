@@ -7,8 +7,8 @@
     ../../home-manager/development
     ../../home-manager/nixvim
   ];
-  home.username = "phuc";
-  home.homeDirectory = "/home/phuc";
+  home.username = "fou";
+  home.homeDirectory = "/home/fou";
   home.stateVersion = "23.11";
 
   home.packages = with pkgs; [
@@ -24,6 +24,5 @@
     udiskie.enable = true;
   };
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

@@ -1,3 +1,3 @@
 {pkgs, ...}: {
-#  imports = [./steam.nix ./gamemode.nix];
+  imports = [./steam.nix ./gamemode.nix];
 }

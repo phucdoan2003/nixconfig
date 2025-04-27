@@ -8,37 +8,35 @@
       mainBar = {
         layer = "top";
         position = "top";
-        height = 25;
-        output = [
-          "DP-1"
-          "eDP-1"
-        ];
-        spacing = 8;
+        height = 20;
+        spacing = 16;
 
         modules-left = ["mpris"];
         modules-center = ["hyprland/workspaces"];
-        modules-right = ["wireplumber" "clock"];
+        modules-right = ["network" "wireplumber" "clock"];
 
         "hyprland/workspaces" = {
-          all-outputs = true;
           format = "{icon}";
           format-icons = {
-            "active" = "";
-            "default" = "";
+            active = "";
+            default = "";
           };
+          on-scroll-up = "hyprctl dispatch workspace e+1";
+          on-scroll-down = "hyprctl dispatch workspace e-1";
         };
 
         "mpris" = {
-          format = "{player_icon} {artist} {album} {title}";
-          format-paused = "{status_icon} {artist} {album} {title}";
+          format = " {player_icon} {artist} {album} {title}";
+          format-paused = " {status_icon} {artist} {album} {title}";
           player-icons = {
-            "default" = "▶";
+            "default" = "";
             "mpv " = "🎵";
           };
           status-icons = {
-            "paused" = "⏸";
+            "paused" = "";
           };
         };
+
         "clock" = {
           format = "{:%H:%M}  ";
           format-alt = "{:%A; %B %d, %Y (%R)}  ";
@@ -58,19 +56,26 @@
           };
           actions = {
             on-click-right = "mode";
-            # on-scroll-up = "tz_up";
-            # on-scroll-down = "tz_down";
             on-scroll-up = "shift_up";
             on-scroll-down = "shift_down";
           };
-
         };
-        "wireplumber"= {
-            format= "{volume}%";
-            format-muted= "";
-            on-click= "helvum";
-            max-volume= 150;
-            scroll-step= 0.2;
+        "wireplumber" = {
+          format = "{volume}% {icon} ";
+          format-muted = " ";
+          on-click = "pwvucontrol";
+          format-icons = "";
+        };
+        "network" = {
+          format = "{ifname}";
+          format-wifi = "{essid}  ";
+          format-ethernet = "{ifname}  ";
+          format-disconnected = " ";
+          tooltip-format = "{ifname} via {gwaddr} 󰊗 ";
+          tooltip-format-wifi = "{essid} ({signalStrength}%)  ";
+          tooltip-format-ethernet = "{ifname}  ";
+          tooltip-format-disconnected = "Disconnected";
+          max-length = 50;
         };
       };
     };

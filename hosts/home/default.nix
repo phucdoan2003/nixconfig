@@ -15,7 +15,7 @@
 
     ./hardware-configuration.nix
     ../../modules/virtualisation
-    ../../modules/services/syncthing.nix
+    ../../modules/gaming
   ];
 
   boot = {
@@ -99,7 +99,7 @@
     openssh.enable = true;
   };
 
-  users.users.phuc = {
+  users.users.fou = {
     isNormalUser = true;
     extraGroups = ["wheel" "docker" "gamemode" "libvirtd" "adbusers"];
   };
@@ -109,7 +109,7 @@
     useUserPackages = true;
     extraSpecialArgs = {inherit inputs;};
     backupFileExtension = "backup";
-    users.phuc = {
+    users.fou = {
       imports = [./home.nix inputs.nixvim.homeManagerModules.nixvim];
     };
   };
@@ -118,8 +118,8 @@
     pathsToLink = ["/share/xdg-desktop-portal" "/share/applications"];
     systemPackages = with pkgs; [
       xdg-utils
-      coreutils
       killall
+      coreutils
       vim
       alejandra
       wget
@@ -139,6 +139,10 @@
       google-chrome
       broadcom-bt-firmware
       bluez
+      lutris
+      wine
+
+      cudatoolkit
     ];
     variables = {
       # track https://github.com/swaywm/sway/issues/8143

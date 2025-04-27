@@ -8,6 +8,8 @@
     wget
     wl-clipboard
     go
-    ollama
+    syncthing
+    lmstudio
+    obsidian
   ];
 }

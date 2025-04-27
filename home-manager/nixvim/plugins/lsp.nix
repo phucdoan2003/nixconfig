@@ -4,12 +4,17 @@
   ...
 }: {
   programs.nixvim.plugins.lsp = {
-    keymaps.lspBuf = {
-      gD = "references";
-      gd = "definition";
-      gi = "implementation";
-      gt = "type_definition";
-      "<leader>ca" = "code_action";
+    keymaps = {
+      lspBuf = {
+        gD = "references";
+        gd = "definition";
+        gi = "implementation";
+        gt = "type_definition";
+        "<leader>ca" = "code_action";
+      };
+      diagnostic = {
+        "<leader>d" = "open_float";
+      };
     };
     servers = {
       ts_ls = {
@@ -39,7 +44,6 @@
       lua_ls.enable = true;
       nixd.enable = true;
       pyright.enable = true;
-      ruff.enable = true;
       tailwindcss.enable = true;
       jsonls.enable = true;
       volar.enable = true;

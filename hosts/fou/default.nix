@@ -5,8 +5,8 @@
   ...
 }: {
   imports = [
-    inputs.nixos-hardware.nixosModules.common-cpu-intel
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia
+    inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
     inputs.nixos-hardware.nixosModules.common-pc-ssd
     inputs.home-manager.nixosModules.default
     inputs.stylix.nixosModules.stylix
@@ -29,7 +29,7 @@
   };
 
   networking = {
-    hostName = "fou";
+    hostName = "syren";
     networkmanager = {
       enable = true;
     };
@@ -69,10 +69,6 @@
       enable = true;
       powerOnBoot = true;
     };
-    nvidia.prime = {
-      intelBusId = "0@0:2:0";
-      nvidiaBusId = "1@:0:0:0";
-    };
   };
 
   stylix = {
@@ -97,7 +93,7 @@
     openssh.enable = true;
   };
 
-  users.users.phuc = {
+  users.users.fou = {
     isNormalUser = true;
     extraGroups = ["wheel" "docker" "gamemode" "libvirtd" "adbusers"];
   };
@@ -107,7 +103,7 @@
     useUserPackages = true;
     extraSpecialArgs = {inherit inputs;};
     backupFileExtension = "backup";
-    users.phuc = {
+    users.fou = {
       imports = [./home.nix inputs.nixvim.homeManagerModules.nixvim];
     };
   };

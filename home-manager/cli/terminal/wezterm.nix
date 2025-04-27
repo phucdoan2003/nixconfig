@@ -26,7 +26,6 @@
       }
 
       config.window_background_opacity = 0.75
-      config.front_end = "WebGpu"
       config.use_fancy_tab_bar = false
 
       config.default_prog = { '${pkgs.fish}/bin/fish', '--login' }

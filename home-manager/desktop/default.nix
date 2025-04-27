@@ -3,7 +3,7 @@
     ./fonts.nix
     ./multimedia
     ./hyprland
-    ./sway
+    # ./sway
     ./fcitx5.nix
     ./thunderbird.nix
     ./stylix.nix
@@ -13,8 +13,6 @@
     mullvad-browser
     libreoffice-qt6-fresh
     keepassxc
-    hyprshot
-    hyprpolkitagent
     mako
     kitty
     wofi
