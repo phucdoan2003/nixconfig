@@ -11,5 +11,6 @@
     syncthing
     lmstudio
     obsidian
+    lazysql
   ];
 }

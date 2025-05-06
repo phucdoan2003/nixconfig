@@ -118,6 +118,8 @@
           bezier = myBezier, 0.05, 0.9, 0.1, 1.05
 
            animation = windows, 1, 5, myBezier
+
+           animation = windows, 1, 5, myBezier
            animation = windowsOut, 1, 5, default, popin 80%
            animation = border, 1, 7, default
            animation = fade, 1, 5, default
@@ -293,8 +295,6 @@
 
             # Example windowrule v2
             # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
-
-            # Ignore maximize requests from apps. You'll probably like this.
             windowrulev2 = suppressevent maximize, class:.*
 
             # Fix some dragging issues with XWayland

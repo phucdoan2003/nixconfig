@@ -16,6 +16,7 @@
     ./hardware-configuration.nix
     ../../modules/virtualisation
     ../../modules/gaming
+    ../../modules/services/jellyfin.nix
   ];
 
   boot = {
@@ -29,7 +30,7 @@
   };
 
   networking = {
-    hostName = "home";
+    hostName = "syren";
     networkmanager = {
       enable = true;
     };

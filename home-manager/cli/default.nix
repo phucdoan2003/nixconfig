@@ -12,6 +12,7 @@
     mkvtoolnix-cli
     httpie
     tio
+    ani-cli
   ];
 
   programs = {
