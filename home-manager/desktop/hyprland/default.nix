@@ -17,6 +17,12 @@
     prismlauncher
     hyprshot
     hyprpolkitagent
+    qbittorrent
+    nautilus
+    brave
+    xclicker
+    zoom-us
+    xivlauncher
   ];
 
   wayland.windowManager.hyprland = {

@@ -29,7 +29,7 @@
   };
 
   networking = {
-    hostName = "syren";
+    hostName = "";
     networkmanager = {
       enable = true;
     };

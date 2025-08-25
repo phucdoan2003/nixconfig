@@ -39,6 +39,7 @@
       extraConfig = {
         gpg.format = "ssh";
       };
+      lfs.enable = true;
     };
   };
 }

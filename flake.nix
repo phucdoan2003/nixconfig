@@ -41,12 +41,12 @@
     formatter = forEachSystem (pkgs: pkgs.alejandra);
 
     nixosConfigurations = {
-      fou = nixpkgs.lib.nixosSystem {
-        modules = [./hosts/fou];
+      teio = nixpkgs.lib.nixosSystem {
+        modules = [./hosts/teio];
         specialArgs = {inherit inputs outputs;};
       };
-      home = nixpkgs.lib.nixosSystem {
-        modules = [./hosts/home];
+      urara = nixpkgs.lib.nixosSystem {
+        modules = [./hosts/urara];
         specialArgs = {inherit inputs outputs;};
       };
     };

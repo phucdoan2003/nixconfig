@@ -30,7 +30,7 @@
   };
 
   networking = {
-    hostName = "syren";
+    hostName = "teio";
     networkmanager = {
       enable = true;
     };

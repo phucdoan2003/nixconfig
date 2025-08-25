@@ -44,6 +44,8 @@
       lualine.enable = true;
 
       direnv.enable = true;
+      typst-vim.enable = true;
+      typst-preview.enable = true;
     };
   };
 }
